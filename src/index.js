@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url' // necessario para recriar o '_dirname'.
+import authRoutes from './routes/authRoutes.js'
 
 // a chamada do banco
 import db from './db/db.js' // excluir depois, não sera aqui a chamada do banco
@@ -46,6 +47,7 @@ app.get ('/', (req,res) => {
 const apiPrefix = '/api'
 //app.use (`${apiPrefix}/`, routes)
 app.use(`${apiPrefix}/clientes`, clienteRoutes) // ex: /api/clientes/
+app.use(`${apiPrefix}/login`, authRoutes); // Rota de login ex:/api/login
 
 // -- TRATAMENTO DE ERROS --
 app.use ((err,req,res,next) => {
@@ -60,3 +62,4 @@ const PORT = process.env.PORT || 3333
 app.listen(PORT, () => {
     console.log (`Servidor rodando na porta ${PORT}`)
 })
+
