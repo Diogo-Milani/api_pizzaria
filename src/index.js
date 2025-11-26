@@ -7,13 +7,11 @@ import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url' // necessario para recriar o '_dirname'.
 import authRoutes from './routes/authRoutes.js'
+import produtoRoutes from '../src/routes/produtoRoutes.js'
+import clienteRoutes from './routes/clienteRoutes.js'
 
 // a chamada do banco
 import db from './db/db.js' // excluir depois, não sera aqui a chamada do banco
-
-
-import clienteRoutes from './routes/clienteRoutes.js'
-
 //padrão moderno para obter o dirname
 const _filename = fileURLToPath(import.meta.url)
 const _dirname = path.dirname(_filename)
@@ -46,8 +44,9 @@ app.get ('/', (req,res) => {
 
 const apiPrefix = '/api'
 //app.use (`${apiPrefix}/`, routes)
-app.use(`${apiPrefix}/clientes`, clienteRoutes) // ex: /api/clientes/
+app.use(`${apiPrefix}/clientes`, clienteRoutes); // ex: /api/clientes/
 app.use(`${apiPrefix}/login`, authRoutes); // Rota de login ex:/api/login
+app.use(`${apiPrefix}/produtos`, produtoRoutes);
 
 // -- TRATAMENTO DE ERROS --
 app.use ((err,req,res,next) => {

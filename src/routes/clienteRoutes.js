@@ -10,7 +10,7 @@ const router = express.Router()
 // a rota de criação de cliente (registro) continua publica
 router.post ('/', validate(clienteCreateSchema), clienteController.adicionarCliente)
 // Rota final: post /api/clientes
-router.use(authMiddleware)
+// router.use(authMiddleware)
 // 2 . aplica o middleware em todas as rotas abaixo desta linha
 // router.use(authMiddleware);// //descomentar para funcionar
 
